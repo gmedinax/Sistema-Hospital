@@ -33,6 +33,7 @@ void consultaPacientes(pacient *); // Función para consultar a todos los pacien
 void buscarPaciente(pacient *, int); // Función para  buscar a un paciente
 void totalPagar(pacient *, int, int); //Función para calcular el total a pagar
 void bajaPaciente(pacient *&, int); // Función para dar de baja a un paciente
+void validarFecha(pacient *paciente, int d, int m, int a);
 
 int main(int argc, const char * argv[]) { //Main
     pacient *paciente=NULL; //nueva variable de tipo "pacient"
@@ -97,6 +98,7 @@ int main(int argc, const char * argv[]) { //Main
                     cout<<"Año: "<<endl;
                     cin>>ai;
                     altaPaciente(paciente, numid, nom, edad, dir, s, enfermedad, precioEnf,di, mi, ai);
+                    validarFecha(paciente, di, mi, ai);
                     cout<<"¿Desea agregar a otro paciente? (s/n)"<<endl;
                     cin>>r;
                 }
@@ -249,3 +251,24 @@ void bajaPaciente(pacient *&paciente, int n){
     cout<<"El paciente se ha dado de alta"<<endl;
 }
 //fin funcion bajaPaciente
+
+//inicio validarFecha
+void validarFecha(pacient *paciente, int d, int m, int a){
+    d=paciente->dayA;
+    m=paciente->monthA;
+    a=paciente->yearA;
+    if(d > 0 && d < 32) {
+        if(m>0&&m<13){
+            if (a>=1900&&a<=2050){
+                cout<<"La fecha es válida"<<endl;
+            }else{
+            cout<<"La fecha no es válida"<<endl;
+                   }
+        }else{
+        cout<<"La fecha no es válida"<<endl;
+               }
+    } else{
+    cout<<"La fecha no es válida"<<endl;
+           }
+}
+//fin validarFecha
